@@ -18,41 +18,41 @@ import ai.djl.repository.zoo.ModelNotFoundException;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.Translator;
-import sun.applet.Main;
+import com.cpb.domain.UtilInputs;
 
 import java.io.IOException;
 
 public class InitializeUtil {
 
-    public Translator<Image, DetectedObjects> initializeTranslator() {
+    public Translator<Image, DetectedObjects> initializeTranslator(String name, int width, int height) {
         return YoloV5Translator.builder()
-                .optSynsetArtifactName("QRCode.names")
-                .addTransform(new Resize(640, 640))
+                .optSynsetArtifactName(name)
+                .addTransform(new Resize(width, height))
                 .addTransform(new ToTensor())
                 .build();
     }
 
-    public Criteria<Image, DetectedObjects> initializeCriteria() {
+    public Criteria<Image, DetectedObjects> initializeCriteria(String path, String ModelName, String ClassName, int width, int height) {
         return Criteria.builder()
                 .setTypes(Image.class, DetectedObjects.class)
                 .optDevice(Device.cpu())
-                .optModelUrls(Main.class.getResource("/weights").getPath())
-                .optModelName("QRCode.torchscript")
-                .optTranslator(initializeTranslator())
+                .optModelUrls(path)
+                .optModelName(ModelName)
+                .optTranslator(initializeTranslator(ClassName, width, height))
                 .optEngine("PyTorch")
                 .build();
     }
 
-    public ZooModel<Image, DetectedObjects> initializeModel() {
+    public ZooModel<Image, DetectedObjects> initializeModel(String path, String ModelName, String ClassName, int width, int height) {
         try {
-            return ModelZoo.loadModel(initializeCriteria());
+            return ModelZoo.loadModel(initializeCriteria(path, ModelName, ClassName, width, height));
         } catch (ModelNotFoundException | MalformedModelException | IOException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public Predictor<Image, DetectedObjects> initializePredictor() {
-        return initializeModel().newPredictor();
+    public Predictor<Image, DetectedObjects> initializePredictor(UtilInputs input) {
+        return initializeModel(input.getPath(), input.getModelName(), input.getClassName(), input.getWidth(), input.getHeight()).newPredictor();
     }
 }

@@ -6,10 +6,11 @@ package com.cpb.service;
 */
 
 import com.cpb.domain.Predict;
+import com.cpb.domain.UtilInputs;
 
 import java.io.File;
 
 public interface DetectService {
 
-    public Predict detect(File file);
+    Predict detect(File file, UtilInputs input);
 }

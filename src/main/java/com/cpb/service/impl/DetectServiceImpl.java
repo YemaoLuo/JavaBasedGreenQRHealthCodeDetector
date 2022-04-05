@@ -12,6 +12,7 @@ import ai.djl.modality.cv.ImageFactory;
 import ai.djl.modality.cv.output.DetectedObjects;
 import ai.djl.translate.TranslateException;
 import com.cpb.domain.Predict;
+import com.cpb.domain.UtilInputs;
 import com.cpb.service.DetectService;
 import com.cpb.utils.InitializeUtil;
 
@@ -21,9 +22,9 @@ import java.io.IOException;
 
 public class DetectServiceImpl implements DetectService {
 
-    public Predict detect(File file) {
+    public Predict detect(File file, UtilInputs input) {
         InitializeUtil initializeUtil = new InitializeUtil();
-        Predictor<Image, DetectedObjects> predictor = initializeUtil.initializePredictor();
+        Predictor<Image, DetectedObjects> predictor = initializeUtil.initializePredictor(input);
         FileInputStream stream = null;
         Predict result = new Predict();
         try {

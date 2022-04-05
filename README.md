@@ -4,7 +4,7 @@
 
 #### 使用方法
 
-1. 将.jar文件Add as library
+1. 将.jar文件Add as library或利用Maven引入工程中
 2. new DetectServiceImpl
 3. 调用其detect方法并传入File
 4. 返回值为Predict对象 包括ClassName以及预测概率

@@ -4,8 +4,9 @@
 
 #### 准备工作
 
-1. 将.jar文件Add as library或利用Maven引入工程中
-2. 将weights文件夹拷贝至工程目录下(示例代码中weights文件夹存放于resources目录下)
+1. 下载Release中的.jar和.zip文件
+2. 将.jar文件Add as library或利用Maven引入工程中
+3. 解压.zip并将解压后的weights文件夹拷贝至工程目录下(示例代码中weights文件夹存放于resources目录下)
 
 #### 示例代码
 

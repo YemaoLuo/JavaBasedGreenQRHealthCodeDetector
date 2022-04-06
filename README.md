@@ -5,7 +5,7 @@
 #### 准备工作
 
 1. 将.jar文件Add as library或利用Maven引入工程中
-2. 将weights文件夹拷贝至工程目录下
+2. 将weights文件夹拷贝至工程目录下(示例代码中weights文件夹存放于resources目录下)
 
 #### 示例代码
 
@@ -26,6 +26,23 @@
         service.detect(null, input);
     }
 ```
+####  工程结构
+
+- project
+  - src
+    - domain
+      - Predict.java
+      - UtilInputs.java
+    - service
+      - DetectService
+        - impl
+          - DetectServiceImpl
+    - utils
+      - InitializeUtil.java
+  - target
+  - weights
+    - QRCode.names
+    - QRCode.torchscript
 
 ### 通过自行训练torchscript模型可实现更多额外功能
 

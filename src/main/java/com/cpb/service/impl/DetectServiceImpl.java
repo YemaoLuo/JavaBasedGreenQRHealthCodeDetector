@@ -14,6 +14,7 @@ import ai.djl.translate.TranslateException;
 import com.cpb.domain.Predict;
 import com.cpb.domain.UtilInputs;
 import com.cpb.service.DetectService;
+import com.cpb.utils.GetBoundUtil;
 import com.cpb.utils.InitializeUtil;
 
 import java.io.File;
@@ -35,6 +36,7 @@ public class DetectServiceImpl implements DetectService {
                 return null;
             } else {
                 Classifications.Classification best = predict.best();
+                result.setBound(new GetBoundUtil().getBound(best.toString()));
                 result.setProbability(best.getProbability());
                 result.setClassName(best.getClassName());
                 return result;

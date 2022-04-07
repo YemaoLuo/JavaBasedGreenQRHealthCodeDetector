@@ -33,12 +33,14 @@
     - domain
       - Predict.java
       - UtilInputs.java
+      - Bound.java
     - service
       - DetectService
         - impl
           - DetectServiceImpl
     - utils
       - InitializeUtil.java
+      - GetBoundUtil.java
   - target
   - weights
     - QRCode.names

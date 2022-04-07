@@ -9,10 +9,12 @@ public class Predict {
 
     private String className;
     private double probability;
+    private Bound bound;
 
-    public Predict(String className, double probability) {
+    public Predict(String className, double probability, Bound bound) {
         this.className = className;
         this.probability = probability;
+        this.bound = bound;
     }
 
     public Predict() {
@@ -34,10 +36,20 @@ public class Predict {
         this.probability = probability;
     }
 
+    @Override
     public String toString() {
         return "Predict{" +
                 "className='" + className + '\'' +
                 ", probability=" + probability +
+                ", bound=" + bound +
                 '}';
+    }
+
+    public Bound getBound() {
+        return bound;
+    }
+
+    public void setBound(Bound bound) {
+        this.bound = bound;
     }
 }

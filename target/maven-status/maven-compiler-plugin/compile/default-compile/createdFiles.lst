@@ -1,5 +1,7 @@
 com\cpb\service\DetectService.class
+com\cpb\domain\Bound.class
 com\cpb\domain\Predict.class
 com\cpb\service\impl\DetectServiceImpl.class
 com\cpb\utils\InitializeUtil.class
 com\cpb\domain\UtilInputs.class
+com\cpb\utils\GetBoundUtil.class

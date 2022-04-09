@@ -26,16 +26,18 @@ public class DetectServiceImpl implements DetectService {
     public Predict detect(File file, UtilInputs input) {
         InitializeUtil initializeUtil = new InitializeUtil();
         Predictor<Image, DetectedObjects> predictor = initializeUtil.initializePredictor(input);
-        FileInputStream stream = null;
+        FileInputStream stream;
         Predict result = new Predict();
         try {
             stream = new FileInputStream(file);
             Image img = ImageFactory.getInstance().fromInputStream(stream);
             DetectedObjects predict = predictor.predict(img);
             if (predict == null) {
-                return null;
+                result.setFlag(false);
+                return result;
             } else {
                 Classifications.Classification best = predict.best();
+                result.setFlag(true);
                 result.setBound(new GetBoundUtil().getBound(best.toString()));
                 result.setProbability(best.getProbability());
                 result.setClassName(best.getClassName());

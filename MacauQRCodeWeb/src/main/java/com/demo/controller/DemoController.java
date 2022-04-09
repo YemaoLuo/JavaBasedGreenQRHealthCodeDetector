@@ -30,7 +30,7 @@ public class DemoController {
       input.setHeight(640);
       input.setWidth(640);
       input.setModelName("QRCode.torchscript");
-      input.setClassName("QRCOde.names");
+      input.setClassName("QRCode.names");
       input.setPath("file:/ + ${Your own weights folder path}");
       File file = MultipartFileToFile(multipartfile);
       Predict detect = service.detect(file, input);
